@@ -34,7 +34,7 @@ render(
               <MovieList type="watch-list" />
             </Route>
 
-            {/* <Route exact path="/watch-list/:id" component={MovieDetail} /> */}
+            <Route exact path="/watch-list/:id" component={MovieDetail} />
 
             <Route exact path="/:id">
               <MovieDetail>

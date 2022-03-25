@@ -23,12 +23,15 @@ const MovieList = ({ type }) => {
   const movieComponents = movieOrder.map((id) => {
     const movie = movies[id];
 
+    const url = type === "discover" ? `/${id}` : `watch-list/${id}`;
+
     return (
       <Movie
         id={movie.id}
         key={id}
         title={movie.title}
         img={movie.poster_path}
+        url={url}
       />
     );
   });
@@ -44,7 +47,7 @@ const MovieList = ({ type }) => {
       <WatchList fetchMovies={getMovies}>
         <MovieGrid>{movieComponents}</MovieGrid>
       </WatchList>
-    )
+    );
   }
 };
 
@@ -58,4 +61,3 @@ const MovieGrid = styled.div`
   padding: 2em;
   margin: 0 auto;
 `;
-
