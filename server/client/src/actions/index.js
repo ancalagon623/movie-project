@@ -23,7 +23,7 @@ export const fetchMovie = (id) => dispatch => {
 
 export const signup = (formProps, callback) => dispatch => {
   axios.post(
-    'http://localhost:5000/auth/signup',
+    '/auth/signup',
     formProps
   ).then(function (response) {
     dispatch({ type: AUTH_USER, payload: response.data });
@@ -40,6 +40,7 @@ export const signin = (formProps, callback) => dispatch => {
     'http://localhost:5000/auth/signin',
     formProps
   ).then(function (response) {
+    debugger;
     dispatch({ type: AUTH_USER, payload: response.data });
     localStorage.setItem('token', response.data.token);
     callback();
@@ -108,4 +109,43 @@ export const signout = (callback) => dispatch => {
 
   dispatch({ type: AUTH_USER, payload: '' });
   callback()
+};
+
+export const addMovieToWatchList = (movie) => dispatch => {
+  console.log(movie);
+  
+  const config = {
+    headers: {
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    }
+  };
+
+  axios.post(
+    'http://localhost:5000/api/watchlist',
+    { movie },
+    config
+  ).then(function (response) {
+    dispatch({ type: ADD_MOVIE, payload: response.data });
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+};
+
+export const fetchWatchListMovies = () => dispatch => {
+  const config = {
+    headers: {
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    }
+  };
+
+  axios.get(
+    'http://localhost:5000/api/watchlist',
+    config
+  ).then(function (response) {
+    dispatch({ type: FETCH_WATCHLIST_MOVIES, payload: response.data });
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 };

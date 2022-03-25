@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Movie = require('../models/movie');
 var crypto = require('crypto');
 const Movie = require('./movie');
 

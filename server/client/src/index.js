@@ -38,7 +38,6 @@ render(
 
             <Route exact path="/:id">
               <MovieDetail>
-                x
                 <WatchListButton />
               </MovieDetail>
             </Route>
