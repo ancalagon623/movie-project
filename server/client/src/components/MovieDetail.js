@@ -40,11 +40,10 @@ const MovieDetail = (props) => {
                 {movie.vote_average}
                 /10
               </p>
-              {props.children}
+              {props.children} 
             </div>
           </div>
         </DetailInfo>
-  
         <Description>
           <p>{movie.overview}</p>
         </Description>

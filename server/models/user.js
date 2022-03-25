@@ -2,13 +2,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Movie = require('../models/movie');
 var crypto = require('crypto');
+const Movie = require('./movie');
 
 // Define our model
 const UserSchema = new Schema({
   email: { type: String, unique: true, lowercase: true },
   hash: String,
   salt: String,
-  watchList: [{ type: Movie.MovieSchema }]
+  watchList: [Movie.MovieSchema]
 });
 
 UserSchema.methods.setPassword = function(password){

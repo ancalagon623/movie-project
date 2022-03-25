@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 // Define our model
@@ -16,12 +16,12 @@ const movieSchema = new Schema({
   backdrop_path: String,
   adult: Boolean,
   overview: String,
-  release_date: String
+  release_date: String,
 });
 
-const MovieModel = mongoose.model('movie', movieSchema);
+const MovieModel = mongoose.model("movie", movieSchema);
 
 module.exports = {
   MovieModel,
-  MovieSchema: movieSchema
+  MovieSchema: movieSchema,
 };

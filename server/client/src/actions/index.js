@@ -69,6 +69,41 @@ export const fetchUser = () => dispatch => {
   });
 };
 
+export const addMovieToWatchList = (movie) => (dispatch) => {
+  const config = {
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    },
+  };
+
+  axios
+    .post("http://localhost:5000/api/watchlist", { movie }, config)
+    .then(function (response) {
+      console.log(response)
+      dispatch({ type: ADD_MOVIE, payload: response.data });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
+
+export const fetchWatchListMovies = () => (dispatch) => {
+  const config = {
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    },
+  };
+
+  axios.get("http://localhost:5000/api/watchlist", config)
+    .then((response) => {
+      console.log(response)
+      dispatch({type: FETCH_WATCHLIST_MOVIES, payload: response.data})
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+}
+
 export const signout = (callback) => dispatch => {
   localStorage.removeItem('token');
 

@@ -12,7 +12,7 @@ const Movie = (props) => {
         <Poster src={`${POSTER_PATH}${props.img}`} alt={props.title} />
       </Overdrive>
     </Link>
-  )
+  );
 };
 
 export default Movie;

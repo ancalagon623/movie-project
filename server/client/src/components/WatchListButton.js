@@ -1,21 +1,23 @@
-import React from 'react';
+import styled from "styled-components"
+import React from 'react'
+import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
-import { addMovieToWatchList } from '../actions'
+import {addMovieToWatchList} from '../actions';
 
 const WatchListButton = () => {
-  const { id } = useParams();
   const dispatch = useDispatch();
-  const movie = useSelector(state => state.movies.entries[id]);
-  const authenticated = useSelector(state => state.auth.authenticated);
+  const { id } = useParams();
+  const movie = useSelector((state) => state.movies.entries[id]);
+  const authenticated = useSelector((state) => state.auth.authenticated);
 
   if (authenticated) {
     return (
-      <button onClick={() => dispatch(addMovieToWatchList(movie))}>Add to Watchlist</button>
+      <button onClick={() => {dispatch(addMovieToWatchList(movie))}}>Add to Watch List</button>
     )
   } else {
     return null;
   }
-};
+
+}
 
 export default WatchListButton;
